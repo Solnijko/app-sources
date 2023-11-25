@@ -4,8 +4,7 @@ pipeline {
         stages {
         stage('Deploy') { 
             steps {
-                sh 'ls -l'
-                ansiblePlaybook inventory: 'inventory.yml', playbook: 'deploy-petclinic.yml', extras: "-e BUILD_ID=${BUILD_ID}"
+                ansiblePlaybook inventory: 'deployment/inventory.yml', playbook: 'deployment/deploy-petclinic.yml', extras: "-e BUILD_ID=${BUILD_ID}"
             }
         }
     }
