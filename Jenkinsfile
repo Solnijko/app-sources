@@ -1,7 +1,7 @@
 node {
     stage('Build') { 
         script{
-            ./mvnw spring-boot:build-image
+            "./mvnw spring-boot:build-image"
         }
     }
 }
