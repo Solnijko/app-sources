@@ -1,9 +1,7 @@
 node {
-    stages {
-        stage('Build') { 
-            steps {
-                sh './mvnw spring-boot:build-image' 
-            }
+    stage('Build') { 
+        steps {
+            sh './mvnw spring-boot:build-image' 
         }
     }
 }
