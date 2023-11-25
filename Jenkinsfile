@@ -8,7 +8,9 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh './mvnv spring-boot:build-image' 
+                git branch: 'main', poll: false, url: 'https://github.com/Solnijko/application-sources.git'
+                sh 'mvn clean verify'
+                archiveArtifacts artifacts: 'build/libs/*.jar', followSymlinks: false
             }
         }
     }
