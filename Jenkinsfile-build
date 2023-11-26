@@ -6,15 +6,24 @@ pipeline {
         }
     }
     stages {
+        stage('Checkout'){
+            steps{
+                git branch: 'main', poll: false, url: 'https://github.com/Solnijko/application-sources.git'
+            }
+        }
         stage('Build') { 
             steps {
-                git branch: 'main', poll: false, url: 'https://github.com/Solnijko/application-sources.git'
-                // sh 'mvn compile war:war'
-                // archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
-                // sh 'cp target/*.war ../wars/petclinic-$(date +%m.%d.%y:%H:%M).war' 
-                sh 'cd ~/'
-                sh 'ls -alh .'
+                sh 'mvn compile war:war'
             }
+        }
+    }
+    post {
+        archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
+        script {
+            def buildId = [
+                [$class: 'StringParameterValue', name: 'BUILD_ID', value: "${BUILD_ID}"]
+            ]
+            build job: 'petclinic-deploy', parameters: buildId
         }
     }
 }
