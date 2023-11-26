@@ -11,7 +11,7 @@
       
     - name: Copy the WAR file to the server
       copy:
-        src: "/var/jenkins_home/jobs/petclinic-build/builds/{{ BUILD_ID }}/archive/target/*.war"
+        src: "/var/jenkins_home/jobs/petclinic-build/builds/{{ buildId }}/archive/target/*.war"
         dest: "/home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war"
         
     - name: Backup war
