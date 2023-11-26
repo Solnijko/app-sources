@@ -19,7 +19,7 @@ pipeline {
                     def buildId = [
                         [$class: 'StringParameterValue', name: 'BUILD_ID', value: "${BUILD_ID}"]
                     ]
-                    build job: 'petclinic-deploy', parameters: buildId
+                    build job: 'spring-petclinic-deploy', parameters: buildId
                 }
             }
         }
