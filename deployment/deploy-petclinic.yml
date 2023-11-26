@@ -9,6 +9,13 @@
     - name: create directory with a date in name
       file: path="/home/tomcat/{{ bkpdate }}" state=directory mode=0755
       
+    - name: Ensure directories exist for WAR file
+      file:
+        path: "/home/tomcat/{{ bkpdate }}/build"
+        state: directory
+        mode: "0755"
+        recurse: yes
+
     - name: Copy the WAR file to the server
       copy:
         src: "/var/jenkins_home/jobs/petclinic-build/builds/{{ buildId }}/archive/target/spring-petclinic-3.2.0-SNAPSHOT.war"
