@@ -32,17 +32,14 @@
         dest: "/home/tomcat/{{ bkpdate }}/"
       when: war_file.stat.exists
              
-    - name: Unpack war
-      copy:
+    - name: Unpack war        
+      unarchive: 
         src: "/home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war"
-        dest: "/opt/tomcat/webapps/ROOT/"        
-      # unarchive: 
-      #   src: "/home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war"
-      #   dest: "/opt/tomcat/webapps/ROOT/"
-      #   copy: no
-      #   mode: 0755
-      #   owner: "tomcat"
-      #   group: "tomcat"
+        dest: "/opt/tomcat/webapps/ROOT/"
+        copy: no
+        mode: 0755
+        owner: "tomcat"
+        group: "tomcat"
       notify:
         - Restart tomcat
         
