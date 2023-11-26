@@ -29,7 +29,7 @@
         owner: "tomcat"
         group: "tomcat"
       notify:
-        - restart tomcat
+        - Restart tomcat
         
     - name: Delete remote war file
       file: 
