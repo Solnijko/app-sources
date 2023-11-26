@@ -11,7 +11,7 @@ pipeline {
                 git branch: 'main', poll: false, url: 'https://github.com/Solnijko/application-sources.git'
                 sh 'mvn compile war:war'
                 archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
-                sh 'cp target/*.war /var/jenkins_home/jobs/petclinic-build/wars/petclinic-$(date +%m.%d.%y:%H:%M).war' 
+                sh 'cp target/*.war ../wars/petclinic-$(date +%m.%d.%y:%H:%M).war' 
             }
         }
     }
