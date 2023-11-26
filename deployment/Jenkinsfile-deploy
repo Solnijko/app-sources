@@ -1,13 +1,16 @@
 pipeline {
     agent any 
-    triggers {
-      upstream 'petclinic-build'
+    parameters {
+        string(name: 'BUILD_ID', defaultValue: '', description: 'Last successful build ID')
     }
     stages {
-    stage('Deploy') { 
-        steps {
-            ansiblePlaybook hostKeyChecking: false, credentialsId: 'SSH-server-credentials', extras: '-e BUILD_ID=${UPSTREAM_BUILD_ID}', inventory: 'deployment/inventory.yml', playbook: 'deployment/deploy-petclinic.yml'
+        stage('Deploy') { 
+            steps {
+                script {
+                    def buildId = params.BUILD_ID
+                    ansiblePlaybook hostKeyChecking: false, credentialsId: 'SSH-server-credentials', extras: '-e ${buildId}', inventory: 'deployment/inventory.yml', playbook: 'deployment/deploy-petclinic.yml'
+                }
+            }
         }
-    }
     }
 }
