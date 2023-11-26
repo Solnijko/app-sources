@@ -34,7 +34,7 @@
              
     - name: Unzip WAR file
       unarchive: 
-        src: "/opt/tomcat/webapps/spring-petclinic-3.2.0.war"
+        src: "/home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war"
         dest: "/opt/tomcat/webapps/ROOT/"
         copy: no
         mode: 0755
