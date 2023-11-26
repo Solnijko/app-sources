@@ -32,8 +32,7 @@
         dest: "/home/tomcat/{{ bkpdate }}/"
       when: war_file.stat.exists
              
-    - name: Move war file to a ROOT folder
-      copy:
+    - name: Unpack war
       unarchive: 
         src: "/home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war"
         dest: "/opt/tomcat/webapps/ROOT/"
