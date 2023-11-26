@@ -12,7 +12,7 @@ pipeline {
                 // sh 'mvn compile war:war'
                 // archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
                 // sh 'cp target/*.war ../wars/petclinic-$(date +%m.%d.%y:%H:%M).war' 
-                sh 'ls -alh ~/'
+                sh 'ls -alh /var/jenkins_home/jobs/petclinic-build/'
             }
         }
     }
