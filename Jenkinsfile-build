@@ -9,9 +9,10 @@ pipeline {
         stage('Build') { 
             steps {
                 git branch: 'main', poll: false, url: 'https://github.com/Solnijko/application-sources.git'
-                sh 'mvn compile war:war'
-                archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
-                sh 'cp target/*.war ../wars/petclinic-$(date +%m.%d.%y:%H:%M).war' 
+                // sh 'mvn compile war:war'
+                // archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
+                // sh 'cp target/*.war ../wars/petclinic-$(date +%m.%d.%y:%H:%M).war' 
+                sh 'ls -alh ../'
             }
         }
     }
