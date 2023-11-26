@@ -9,8 +9,8 @@ pipeline {
         stage('Build') { 
             steps {
                 git branch: 'main', poll: false, url: 'https://github.com/Solnijko/application-sources.git'
-                sh 'mvn clean verify'
-                archiveArtifacts artifacts: 'build/libs/*.jar', followSymlinks: false
+                sh 'mvn clean install'
+                archiveArtifacts artifacts: 'build/libs/*.war', followSymlinks: false
             }
         }
     }
