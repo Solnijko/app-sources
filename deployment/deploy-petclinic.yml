@@ -1,10 +1,7 @@
 ---
 - hosts: tomcat_server
   become: yes
-  vars:
-    - warName: ROOT.war
-    - warRemotePath: /home/tomcat
-    
+
   tasks:
     - name: Get current date
       set_fact: bkpdate="{{ lookup('pipe', 'date +%Y%m%d-%H%M') }}"
