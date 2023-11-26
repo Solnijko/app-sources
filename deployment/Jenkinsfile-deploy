@@ -4,7 +4,7 @@ pipeline {
         stages {
         stage('Deploy') { 
             steps {
-                ansiblePlaybook credentialsId: '8081', extras: '-e BUILD_ID=${BUILD_ID}', inventory: 'deployment/inventory.yml', playbook: 'deployment/deploy-petclinic.yml'
+                ansiblePlaybook credentialsId: 'ssh-tomcat', extras: '-e BUILD_ID=${BUILD_ID}', inventory: 'deployment/inventory.yml', playbook: 'deployment/deploy-petclinic.yml'
             }
         }
     }
