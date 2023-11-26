@@ -9,7 +9,7 @@ pipeline {
         stage('Build') { 
             steps {
                 git branch: 'main', poll: false, url: 'https://github.com/Solnijko/application-sources.git'
-                sh './mvnw clean'
+                sh 'mvn compile war:war'
                 archiveArtifacts artifacts: 'build/libs/*.war', followSymlinks: false
             }
         }
