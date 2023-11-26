@@ -3,6 +3,11 @@
   become: yes
 
   tasks:
+  
+    - name: Change ssh port to 2022
+    set_fact:
+      ansible_port: 2022
+      
     - name: Stop Tomcat
       service:
         name: tomcat
