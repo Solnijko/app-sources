@@ -1,33 +1,28 @@
 ---
 - hosts: tomcat_server
   become: yes
-
   tasks:
-     - name: get current date
-        set_fact: bkpdate="{{ lookup('pipe', 'date +%Y%m%d-%H%M') }}"
-
+    - name: Gget current date
+      set_fact: bkpdate="{{ lookup('pipe', 'date +%Y%m%d-%H%M') }}"
     - name: create directory with a date in name
-      file: path="/home/tomcat/{{ bkpdate }}"
-            state=directory
-            mode=0755
-
+      file: path="/home/tomcat/{{ bkpdate }}" state=directory mode=0755
     - name: Copy the WAR file to the server
       copy:
-        src: "/var/jenkins_home/jobs/petclinic-build/builds/{{ BUILD_ID }}/archive/target/*.war"
-        dest: "/home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war"
-
+        src: /var/jenkins_home/jobs/petclinic-build/builds/{{ BUILD_ID
+          }}/archive/target/*.war
+        dest: /home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war
     - name: Backup war
-      shell: "cp /usr/local/tomcat/webapps/spring-petclinic-3.2.0.war /home/tomcat/{{ bkpdate }}/"
-
+      shell: cp /usr/local/tomcat/webapps/spring-petclinic-3.2.0.war /home/tomcat/{{
+        bkpdate }}/
     - name: Unzip WAR file
-      unarchive: src= /usr/local/tomcat/webapps/spring-petclinic-3.2.0.war dest=/usr/local/tomcat/webapps/ROOT/ copy=no mode=0755 owner=tomcat group=tomcat
+      unarchive: src= /usr/local/tomcat/webapps/spring-petclinic-3.2.0.war
+        dest=/usr/local/tomcat/webapps/ROOT/ copy=no mode=0755 owner=tomcat
+        group=tomcat
       notify:
-          - restart tomcat
-
+        - restart tomcat
     - name: Delete remote war file
       file: path=/usr/local/tomcat/webapps/spring-petclinic-3.2.0.war state=absent
       ignore_errors: yes
-       
- handlers:
+  handlers:
     - name: Restart tomcat
       service: name=tomcat state=restarted
