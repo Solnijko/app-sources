@@ -34,15 +34,13 @@
              
     - name: Move war file to a ROOT folder
       copy:
+      unarchive: 
         src: "/home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war"
-        dest: "/opt/tomcat/webapps/ROOT/ROOT.war"
-      # unarchive: 
-      #   src: "/home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war"
-      #   dest: "/opt/tomcat/webapps/ROOT/"
-      #   copy: no
-      #   mode: 0755
-      #   owner: "tomcat"
-      #   group: "tomcat"
+        dest: "/opt/tomcat/webapps/ROOT/"
+        copy: no
+        mode: 0755
+        owner: "tomcat"
+        group: "tomcat"
       notify:
         - Restart tomcat
         
