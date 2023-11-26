@@ -12,8 +12,7 @@
           }}/archive/target/*.war
         dest: /home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war
     - name: Backup war
-      shell: cp /usr/local/tomcat/webapps/spring-petclinic-3.2.0.war /home/tomcat/{{
-        bkpdate }}/
+      shell: cp /usr/local/tomcat/webapps/spring-petclinic-3.2.0.war /home/tomcat/{{bkpdate }}/
     - name: Unzip WAR file
       unarchive: src= /usr/local/tomcat/webapps/spring-petclinic-3.2.0.war
         dest=/usr/local/tomcat/webapps/ROOT/ copy=no mode=0755 owner=tomcat
