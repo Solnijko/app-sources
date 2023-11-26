@@ -8,12 +8,12 @@ pipeline {
     stages {
         stage('Checkout'){
             steps{
-                git branch: 'main', poll: false, url: 'https://github.com/Solnijko/application-sources.git'
+                git branch: 'main', poll: false, url: 'https://github.com/Solnijko/app-sources.git'
             }
         }
         stage('Build') { 
             steps {
-                sh 'mvn compile war:war'
+                sh 'mvn clean package'
                 archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
                 script {
                     def buildId = [

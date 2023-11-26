@@ -1,17 +1,18 @@
-target/*
-bin/*
-build/*
-.gradle/*
-.settings/*
+# Eclipse
+.settings/
 .classpath
 .project
-.factorypath
-.attach_pid*
+bin/
+
+# IntelliJ IDEA
 .idea
 *.iml
-/target
-.sts4-cache/
+
+# VS Code
 .vscode
-_site/
-*.css
-!petclinic.css
+
+# Maven
+target/
+
+# OS
+.DS_Store
