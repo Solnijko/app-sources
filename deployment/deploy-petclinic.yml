@@ -34,7 +34,7 @@
     - name: Delete remote war file
       file: 
         path: "/usr/local/tomcat/webapps/spring-petclinic-3.2.0.war:
-        state: "absent"
+        state: absent
       ignore_errors: yes
       
   handlers:
