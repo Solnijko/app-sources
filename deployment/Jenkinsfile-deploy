@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    triggers {
+      upstream 'petclinic-build'
+    }
     parameters {
         string(name: 'BUILD_ID', defaultValue: '', description: 'Last successful build ID')
     }
