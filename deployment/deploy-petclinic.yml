@@ -3,9 +3,8 @@
   become: yes
 
   tasks:
-
      - name: get current date
-    set_fact: bkpdate="{{ lookup('pipe', 'date +%Y%m%d-%H%M') }}"
+        set_fact: bkpdate="{{ lookup('pipe', 'date +%Y%m%d-%H%M') }}"
 
     - name: create directory with a date in name
       file: path="/home/tomcat/{{ bkpdate }}"
