@@ -1,11 +1,13 @@
 pipeline {
-    agent any  
-
-        stages {
-        stage('Deploy') { 
-            steps {
-                ansiblePlaybook hostKeyChecking: false, credentialsId: 'SSH-server-credentials', extras: '-e BUILD_ID=${BUILD_ID}', inventory: 'deployment/inventory.yml', playbook: 'deployment/deploy-petclinic.yml'
-            }
+    agent any 
+    triggers {
+      upstream 'petclinic-build'
+    }
+    stages {
+    stage('Deploy') { 
+        steps {
+            ansiblePlaybook hostKeyChecking: false, credentialsId: 'SSH-server-credentials', extras: '-e BUILD_ID=${BUILD_ID}', inventory: 'deployment/inventory.yml', playbook: 'deployment/deploy-petclinic.yml'
         }
+    }
     }
 }
