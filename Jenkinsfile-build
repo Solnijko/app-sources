@@ -11,8 +11,7 @@ pipeline {
                 git branch: 'main', poll: false, url: 'https://github.com/Solnijko/application-sources.git'
                 sh 'mvn compile war:war'
                 archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
-                def formattedDate = sh(script: 'date "+%m.%d.%Y:%H.%M"', returnStdout: true).trim()
-                sh "cp target/*.war /var/jenkins_home/jobs/petclinic-build/wars/petclinic-${formattedDate}.war"
+                sh "cp target/*.war /var/jenkins_home/jobs/petclinic-build/wars/petclinic-$(date +%m.%d.%y:%H:%M).war"
             }
         }
     }
