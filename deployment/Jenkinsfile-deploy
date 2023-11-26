@@ -8,8 +8,8 @@ pipeline {
             steps {
                 script {
                     def buildId = params.BUILD_ID
-                    echo "-e $buildId"
-                    // ansiblePlaybook hostKeyChecking: false, credentialsId: 'SSH-server-credentials', extras: '-e ${buildId}', inventory: 'deployment/inventory.yml', playbook: 'deployment/deploy-petclinic.yml'
+                    echo "Last build ID: ${buildId}"
+                    ansiblePlaybook hostKeyChecking: false, credentialsId: 'SSH-server-credentials', extras: '-e ${buildId}', inventory: 'deployment/inventory.yml', playbook: 'deployment/deploy-petclinic.yml'
                 }
             }
         }
