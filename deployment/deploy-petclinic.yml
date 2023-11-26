@@ -22,8 +22,10 @@
         dest: "/home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war"
         
     - name: Backup war
-      shell: cp "/usr/local/tomcat/webapps/spring-petclinic-3.2.0.war /home/tomcat/{{ bkpdate }}/"
-      
+      copy:
+        src: "/usr/local/tomcat/webapps/spring-petclinic-3.2.0.war"
+        dest: "/home/tomcat/{{ bkpdate }}/"
+             
     - name: Unzip WAR file
       unarchive: 
         src: "/usr/local/tomcat/webapps/spring-petclinic-3.2.0.war"
