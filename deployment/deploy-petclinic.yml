@@ -34,7 +34,7 @@
              
     - name: Move war file to a ROOT folder
       copy:
-        src: "/home/tomcat/{{ bkpdate }}/"
+        src: "/home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war"
         dest: "/opt/tomcat/webapps/ROOT/ROOT.war"
       # unarchive: 
       #   src: "/home/tomcat/{{ bkpdate }}/build/spring-petclinic-3.2.0.war"
